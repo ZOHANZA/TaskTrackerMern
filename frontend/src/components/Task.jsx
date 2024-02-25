@@ -17,7 +17,7 @@ const Task = ({ task,onDelete, onToggle }) => {
   >
       <h3>{task.text} 
       <Link to="/update" className='btn'> U   </Link>
-      <Link to='/' className='btn'> R   </Link>
+      
       <FaTimes
           style={{ color: 'red', cursor: 'pointer' }}
           onClick={onDelete}    
