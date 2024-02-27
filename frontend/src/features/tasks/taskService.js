@@ -1,6 +1,7 @@
 import axios from "axios";
+import env from "react-dotenv";
 
-const API_URL = "/api/tasks/";
+const API_URL = env.BASE_URI + "api/tasks/";
 
 // Create new task
 const createTask = async (taskData, token) => {
@@ -28,8 +29,6 @@ const getTasks = async (token) => {
   return response.data;
 };
 
-
-
 // Delete user task
 const deleteTask = async (taskId, token) => {
   const config = {
@@ -48,35 +47,38 @@ export const updateTask = async (taskId, updatedTaskData, token) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   };
 
-  const response = await axios.put(`${API_URL}${taskId}`, updatedTaskData, config);
+  const response = await axios.put(
+    `${API_URL}${taskId}`,
+    updatedTaskData,
+    config
+  );
 
   return response.data;
 };
 
 //Toggle user
 const toggleTaskReminder = async (taskId, token) => {
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
 
   const response = await axios.put(API_URL + taskId, config);
 
   return response.data;
-  
 };
-
 
 const taskService = {
   createTask,
   getTasks,
   deleteTask,
-  toggleTaskReminder
+  toggleTaskReminder,
+  updateTask,
 };
 
 export default taskService;

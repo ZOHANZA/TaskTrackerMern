@@ -66,7 +66,6 @@ export const deleteTask = createAsyncThunk(
   }
 );
 
-
 //update user
 export const updateTask = createAsyncThunk(
   "tasks/update",
@@ -103,9 +102,6 @@ export const toggleTaskReminder = createAsyncThunk(
     }
   }
 );
-
-
-
 
 const taskSlice = createSlice({
   name: "tasks",
@@ -175,7 +171,6 @@ const taskSlice = createSlice({
           ? action.payload
           : "Failed to update task";
       });
-
   },
 });
 

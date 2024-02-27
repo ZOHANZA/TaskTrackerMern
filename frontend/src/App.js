@@ -1,14 +1,12 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-import Header from './components/Header'
-import Dashboard from './pages/Dashboard'
-import Login from './pages/Login'
-import Register from './pages/Register'
-import TaskView from './pages/TaskView'
-import TaskUView from './pages/TaskUView'
-
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Header from "./components/Header";
+import Dashboard from "./pages/Dashboard";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import TaskView from "./pages/TaskView";
+import TaskUpdateView from "./pages/TaskUpdateView";
 
 function App() {
   return (
@@ -20,10 +18,8 @@ function App() {
             <Route path="/" element={<Dashboard />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/task" element={<TaskView />} />{" "}
-            {/* Define a new route for the TaskView component */}
-            <Route path="/update" element={<TaskUView />} />
-            {/* Define a new route for the TaskUView component */}
+            <Route path="/tasks" element={<TaskView />} />
+            <Route path="/update" element={<TaskUpdateView />} />
           </Routes>
         </div>
       </Router>
@@ -32,4 +28,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

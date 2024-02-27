@@ -1,91 +1,65 @@
-import { useState,useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import TaskForm from '../components/TaskForm';
-import Spinner from '../components/Spinner';
-import Task from '../components/Task'; // Import Task component
-import { updateTask, toggleTaskReminder, deleteTask, getTasks, reset } from '../features/tasks/taskSlice';
-import HeaderT from '../components/HeaderT';
-import taskService from '../features/tasks/taskService';
-import UpdateForm from '../components/UpdateForm';
-
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import TaskForm from "../components/TaskForm";
+import Spinner from "../components/Spinner";
+import Task from "../components/Task";
+import { deleteTask, getTasks, reset } from "../features/tasks/taskSlice";
+import TaskHeader from "../components/TaskHeader";
 
 function TaskView() {
-    const navigate = useNavigate();
-    const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-    const [showAddTask, setShowAddTask] = useState(false)
-    const { user } = useSelector((state) => state.auth);
-    const token = useSelector((state) => state.auth.token);
-    const { tasks, isLoading, isError, message } = useSelector((state) => state.tasks);
-    const [selectedTask, setSelectedTask] = useState(null);
+  const [showAddTask, setShowAddTask] = useState(false);
+  const { user } = useSelector((state) => state.auth);
+  const { tasks, isLoading, isError, message } = useSelector(
+    (state) => state.tasks
+  );
 
-    
-    
-    useEffect(() => {
-        if (isError) {
-            console.log(message);
-        }
-
-        if (!user) {
-            navigate('/login');
-        }
-
-        dispatch(getTasks());
-
-        return () => {
-            dispatch(reset());
-        };
-    }, [user, navigate, isError, message, dispatch]);
-
-    
-
-    if (isLoading) {
-        return <Spinner />;
+  useEffect(() => {
+    if (isError) {
+      console.log(message);
     }
 
-    const handleCancelUpdate = () => {
-        setSelectedTask(null);
+    if (!user) {
+      navigate("/login");
+    }
+
+    dispatch(getTasks());
+
+    return () => {
+      dispatch(reset());
     };
-    const handleUpdateClick = (task) => {
-        setSelectedTask(task);
-        console.log('hello2');
-    };
-    
-   
-    return (
-        <div className='containers'>
-            {showAddTask && <TaskForm />}
-            <HeaderT
-                title="Task Tracker" 
-                onAdd={() => setShowAddTask(!showAddTask)}
-                showAdd={showAddTask}
+  }, [user, navigate, isError, message, dispatch]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  return (
+    <div className="containers">
+      {showAddTask && <TaskForm />}
+      <TaskHeader
+        title="Task Tracker"
+        onAdd={() => setShowAddTask(!showAddTask)}
+        showAdd={showAddTask}
+      />
+      {tasks.length > 0 ? (
+        <>
+          {tasks.map((task) => (
+            <Task
+              key={task._id}
+              task={task}
+              onDelete={() => dispatch(deleteTask(task._id))}
             />
-            {selectedTask ? (
-                <UpdateForm
-                  selectedTask={selectedTask} token={token}
-                    onCancel={handleCancelUpdate}
-                />
-            ) : (
-                tasks.length > 0 ? (
-                    <div className='tasks'>
-                        {tasks.map((task) => (
-                            <Task
-                                key={task.id}
-                                task={task}
-                                onDelete={() => dispatch(deleteTask(task._id))}
-                                onToggle={() => dispatch(toggleTaskReminder(task._id))}
-                                
-                            />
-                        ))}
-                    </div>
-                ) : (
-                    <p>No tasks found.</p>
-                )
-            )}
-        </div>
-    );
+          ))}
+        </>
+      ) : (
+        <p>No tasks found.</p>
+      )}
+    </div>
+  );
 }
 
 export default TaskView;
-
