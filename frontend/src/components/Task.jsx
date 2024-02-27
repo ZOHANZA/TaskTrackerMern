@@ -16,7 +16,7 @@ const Task = ({ task,onDelete, onToggle }) => {
     onDoubleClick={() => onToggle(task._id)}
   >
       <h3>{task.text} 
-      <Link to="/update" className='btn'> U   </Link>
+      {/* <Link to="/update" className='btn'> U   </Link> */}
       
       <FaTimes
           style={{ color: 'red', cursor: 'pointer' }}

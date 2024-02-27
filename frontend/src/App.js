@@ -6,7 +6,8 @@ import Dashboard from './pages/Dashboard'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import TaskView from './pages/TaskView'
-import UpdateForm from './components/UpdateForm'
+import TaskUView from './pages/TaskUView'
+
 
 
 function App() {
@@ -21,7 +22,8 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/task" element={<TaskView />} />{" "}
             {/* Define a new route for the TaskView component */}
-            <Route path="/update/:taskId" element={<UpdateForm />}  />
+            <Route path="/update" element={<TaskUView />} />
+            {/* Define a new route for the TaskUView component */}
           </Routes>
         </div>
       </Router>

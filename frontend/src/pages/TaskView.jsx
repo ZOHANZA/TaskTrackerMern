@@ -75,7 +75,7 @@ function TaskView() {
                                 task={task}
                                 onDelete={() => dispatch(deleteTask(task._id))}
                                 onToggle={() => dispatch(toggleTaskReminder(task._id))}
-                                onUpdate={() => handleUpdateClick(task)} // Passes task to be updated
+                                
                             />
                         ))}
                     </div>
