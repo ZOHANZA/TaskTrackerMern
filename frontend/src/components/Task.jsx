@@ -1,10 +1,12 @@
 import React from "react";
-import { FaTimes } from "react-icons/fa";
+import { FaTimes,FaPencilAlt } from "react-icons/fa";
 import { Link  } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateTask } from "../features/tasks/taskSlice";
+
+
 
 const Task = ({ task, onDelete }) => {
   const dispatch = useDispatch();
@@ -34,24 +36,31 @@ const Task = ({ task, onDelete }) => {
 
   return (
     <div className={`task ${task.setReminder ? "reminder" : ""}`}>
-      <h3>
-        {task?.text}
-        <Link to={"/update"} state={{ id: task._id }} className="btn">
-          Update
-        </Link>
-        <FaTimes
-          style={{ color: "red", cursor: "pointer" }}
-          onClick={onDelete}
-        />
-      </h3>
-      <p>{task?.timeAndDay}</p>
-      <input
-        type="checkbox"
-        name="setReminder"
-        checked={checked}
-        onChange={handleCheckboxChange}
-      />
-      <label htmlFor="setReminder">Set reminder</label>
+      <div className="task-header">
+        <h3>{task?.text}</h3>
+        <div className="task-icons">
+          <Link to={"/update"} state={{ id: task._id }} className="update-icon">
+            <FaPencilAlt />
+          </Link>
+          <FaTimes
+            style={{ color: "red", cursor: "pointer" }}
+            onClick={onDelete}
+          />
+        </div>
+      </div>
+      <div className="task-details">
+        <p>{task?.timeAndDay}</p>
+        <div className="set-reminder">
+          <input
+            type="checkbox"
+            name="setReminder"
+            checked={task.setReminder}
+            onChange={handleCheckboxChange}
+            
+          />
+          <label htmlFor="setReminder">Set reminder</label>
+        </div>
+      </div>
     </div>
   );
 };

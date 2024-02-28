@@ -25,7 +25,7 @@ function TaskUpdateForm({ id }) {
     }
   }, [task]);
 
-  const onSubmit = (e) => {
+  const onSubmit = (e , showAddTask) => {
     e.preventDefault();
 
     const updatedTaskData = {
@@ -41,6 +41,10 @@ function TaskUpdateForm({ id }) {
     setTimeAndDay("");
     setSetReminder(false);
     navigate("/tasks");
+
+    showAddTask = "false"
+
+
   };
 
   return (
@@ -91,6 +95,7 @@ function TaskUpdateForm({ id }) {
 
 TaskUpdateForm.propTypes = {
   id: PropTypes.string.isRequired,
+  showAddTask: PropTypes.string.isRequired,
 };
 
 export default TaskUpdateForm;

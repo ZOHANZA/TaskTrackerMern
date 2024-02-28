@@ -68,6 +68,145 @@ h3 {
   margin-bottom: 60px;
 }
 
+.task {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-icons {
+  display: flex;
+  align-items: center;
+}
+
+.update-icon {
+  margin-right: 10px;
+}
+
+.task-details {
+  display: flex;
+  flex-direction: column;
+  /* align-items: flex-start; */
+}
+
+.set-reminder {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.set-reminder label {
+  margin-left: 5px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.delete-modal {
+  background-color: white;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dashboard-container {
+  padding: 20px;
+  background-color: #f8f8f8;
+}
+
+.welcome-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.welcome-message {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.action-links {
+  display: flex;
+  gap: 10px;
+}
+
+.view-tasks-btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.quote-container {
+  display: flex;
+  align-items: center;
+}
+
+.quote-text {
+  font-style: italic;
+  margin-right: 10px;
+}
+
+.animated-icon {
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.view-tasks-btn:hover {
+  background-color: #0056b3;
+}
+.cancel-button,
+.confirm-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.confirm-button {
+  background-color: #ff4f4f;
+  color: white;
+}
+
+.cancel-button {
+  background-color: #f0f0f0;
+}
+
+.cancel-button:hover,
+.confirm-button:hover {
+  opacity: 0.8;
+}
+
 .header ul {
   display: flex;
   align-items: center;
