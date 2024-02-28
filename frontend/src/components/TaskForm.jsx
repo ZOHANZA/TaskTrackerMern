@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createTask } from '../features/tasks/taskSlice'; // Assuming you have a createTask action defined in your taskSlice
 
-function TaskForm() {
+function TaskForm({ onClose }) { // Pass onClose function as prop
   const [text, setText] = useState('');
   const [timeAndDay, setTimeAndDay] = useState('');
   const [setReminder, setSetReminder] = useState(false); // State for reminder checkbox
@@ -16,6 +16,7 @@ function TaskForm() {
     setText('');
     setTimeAndDay('');
     setSetReminder(false); // Reset reminder checkbox after form submission
+    onClose(); // Call onClose function to close the TaskForm
   };
 
   return (
@@ -64,4 +65,5 @@ function TaskForm() {
 }
 
 export default TaskForm;
+
 

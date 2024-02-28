@@ -12,7 +12,6 @@ function TaskView() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-
   const [showAddTask, setShowAddTask] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [taskIdToDelete, setTaskIdToDelete] = useState(null);
@@ -38,24 +37,26 @@ function TaskView() {
     };
   }, [user, navigate, isError, message, dispatch]);
 
-const handleDelete = (taskId) => {
-  // Set the taskIdToDelete and show the delete modal
-  setTaskIdToDelete(taskId);
-  setShowDeleteModal(true);
-};
+  const handleDelete = (taskId) => {
+    // Set the taskIdToDelete and show the delete modal
+    setTaskIdToDelete(taskId);
+    setShowDeleteModal(true);
+  };
 
   const confirmDelete = () => {
-    
     dispatch(deleteTask(taskIdToDelete)).then(() => {
       dispatch(getTasks());
       setShowDeleteModal(false);
     });
   };
+  
   const cancelDelete = () => {
-    
     setShowDeleteModal(false);
   };
 
+  const handleCloseTaskForm = () => {
+    setShowAddTask(false);
+  };
 
   if (isLoading) {
     return <Spinner />;
@@ -63,7 +64,7 @@ const handleDelete = (taskId) => {
 
   return (
     <div className="containers">
-      {showAddTask && <TaskForm />}
+      {showAddTask && <TaskForm onClose={handleCloseTaskForm} />}
       <TaskHeader
         title="Task Tracker"
         onAdd={() => setShowAddTask(!showAddTask)}
@@ -87,7 +88,6 @@ const handleDelete = (taskId) => {
         onClose={cancelDelete}
         onConfirm={confirmDelete}
       />
-
     </div>
   );
 }
