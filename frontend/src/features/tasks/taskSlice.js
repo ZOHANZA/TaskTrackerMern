@@ -90,18 +90,7 @@ export const updateTask = createAsyncThunk(
   }
 );
 
-//Toggle Reminder
-export const toggleTaskReminder = createAsyncThunk(
-  "tasks/toggleReminder",
-  async (taskId, thunkAPI) => {
-    try {
-      const response = await taskService.toggleTaskReminder(taskId);
-      return response;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+
 
 const taskSlice = createSlice({
   name: "tasks",
@@ -171,6 +160,8 @@ const taskSlice = createSlice({
           ? action.payload
           : "Failed to update task";
       });
+      
+      
   },
 });
 

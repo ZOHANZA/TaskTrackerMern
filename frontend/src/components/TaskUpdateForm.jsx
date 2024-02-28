@@ -9,7 +9,6 @@ function TaskUpdateForm({ id }) {
   const dispatch = useDispatch();
 
   const { tasks } = useSelector((state) => state.tasks);
-
   const task = tasks.find((task) => task._id === id);
 
   // State to hold form field values

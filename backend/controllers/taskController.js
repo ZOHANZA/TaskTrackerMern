@@ -67,33 +67,6 @@ const updateTask = asyncHandler(async (req, res) => {
 
 
 
-// @desc    Toggle reminder for task
-// @route   PUT /api/tasks/:id
-// @access  Private
-const toggleTaskReminder = asyncHandler(async (req, res) => {
-  const task = await Task.findById(req.params.id);
-
-  if (!task) {
-    res.status(404);
-    throw new Error("Task not found");
-  }
-
-  // Check if the user is authorized to update the task
-  if (task.user.toString() !== req.user.id) {
-    res.status(401);
-    throw new Error("User not authorized to update this task");
-  }
-
-  // Toggle the reminder field to its opposite state
-  task.reminder = !task.reminder;
-
-  const updatedTask = await task.save();
-
-  res.status(200).json(updatedTask);
-});
-
-
-
 // @desc    Delete task
 // @route   DELETE /api/tasks/:id
 // @access  Private
@@ -121,4 +94,5 @@ module.exports = {
   setTask,
   updateTask,
   deleteTask,
+  toggleTaskReminder
 };

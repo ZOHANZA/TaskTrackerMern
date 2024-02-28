@@ -60,24 +60,12 @@ export const updateTask = async (taskId, updatedTaskData, token) => {
   return response.data;
 };
 
-//Toggle user
-const toggleTaskReminder = async (taskId, token) => {
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
 
-  const response = await axios.put(API_URL + taskId, config);
-
-  return response.data;
-};
 
 const taskService = {
   createTask,
   getTasks,
   deleteTask,
-  toggleTaskReminder,
   updateTask,
 };
 

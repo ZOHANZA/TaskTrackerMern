@@ -1,3 +1,3 @@
 window.env = {
-  "BASE_URI": "http://localhost:8000/"
+  "BASE_URI": "http://localhost:5000/"
 };
